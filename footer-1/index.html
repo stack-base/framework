@@ -310,38 +310,5 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        // Wait for the document to be fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-
-            // --- Dark Mode Logic ---
-            var toggleButton = document.getElementById('darkModeToggle');
-            var body = document.body;
-
-            // Function to apply the saved theme
-            function applyTheme() {
-                var isDarkMode = localStorage.getItem('darkMode') === 'true';
-                if (isDarkMode) {
-                    body.classList.add('dark-mode');
-                } else {
-                    body.classList.remove('dark-mode');
-                }
-            }
-
-            // Apply theme on initial load
-            applyTheme();
-
-            // Add click event listener for the toggle button
-            toggleButton.addEventListener('click', function() {
-                // Toggle the .dark-mode class on the body
-                body.classList.toggle('dark-mode');
-                
-                // Save the user's preference to localStorage
-                var isDarkMode = body.classList.contains('dark-mode');
-                localStorage.setItem('darkMode', isDarkMode);
-            });
-        });
-    </script>
 </body>
 </html>
