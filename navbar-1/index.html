@@ -59,14 +59,15 @@
             align-items: center;
             justify-content: space-between;
             height: 4rem;
-            position: relative; /* Context for absolute positioning of mobile menu */
         }
         
+        /* Set relative positioning and high z-index so the logo stays above the sliding menu */
         .logo-container {
             display: flex;
             align-items: center;
             flex-shrink: 0;
-            z-index: 60; /* Keeps logo above the mobile menu if needed */
+            position: relative;
+            z-index: 60; 
         }
 
         .logo-container img {
@@ -81,14 +82,15 @@
             margin-left: 0.75rem;
         }
         
-        /* Hamburger Button (Visible on Mobile) */
+        /* Stay above the sliding menu */
         .mobile-menu-button {
             display: block;
             color: #d1d5db;
             padding: 0.5rem;
             margin-right: -0.5rem;
             transition: color 0.2s;
-            z-index: 60;
+            position: relative;
+            z-index: 60; 
         }
 
         .mobile-menu-button:hover {
@@ -101,64 +103,63 @@
         }
 
         /* ========================================
-           UNIFIED MENU: MOBILE STYLES (Default)
+           UNIFIED MENU: MOBILE STYLES (Full Screen)
            ========================================
         */
         .nav-menu {
-            position: absolute;
-            top: 100%; 
+            position: fixed; /* Fix to viewport */
+            top: 0; 
             left: 0;
             width: 100%;
+            height: 100vh; /* Full screen height */
             background-color: #111827;
-            padding: 1rem 5% 1.5rem 5%; 
-            border-top: 1px solid #374151;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            padding: 5rem 5% 2rem 5%; /* Top padding pushes links below the header */
             
-            /* Mobile Layout: Stacked vertically */
+            /* Mobile Layout: Stacked vertically and centered */
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            align-items: center;
+            gap: 1.5rem; /* Larger gap for full screen breathing room */
             
-            /* Hidden by default with animation */
+            /* Hidden by default with animation from top */
             visibility: hidden;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform: translateY(-100%); /* Start completely off-screen at the top */
+            transition: transform 0.4s ease-in-out, visibility 0.4s ease-in-out;
+            z-index: 40; /* Lower than logo and hamburger button */
         }
         
         /* Active state for mobile */
         .nav-menu.open {
             visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0); /* Slide down into view */
         }
         
         /* Links inside the menu */
         .nav-link {
             display: block;
             color: #d1d5db;
-            padding: 0.75rem 1rem;
-            border-radius: 0.375rem;
+            font-size: 1.25rem; /* Larger text for mobile full screen */
             font-weight: 500;
         }
         
         .nav-link:hover {
             color: white;
-            background-color: #1f2937;
         }
         
         /* Call to Action Container */
         .nav-cta-container {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            width: 100%;
+            gap: 1rem;
             margin-top: 1rem;
             border-top: 1px solid #374151;
-            padding-top: 1rem;
+            padding-top: 2rem;
         }
 
         .nav-cta-signin {
             color: #d1d5db;
+            font-size: 1.125rem;
             font-weight: 500;
             padding: 0.75rem 1rem;
             border-radius: 0.375rem;
@@ -173,6 +174,7 @@
         .nav-cta-signup {
             background-image: linear-gradient(to right, #3b82f6, #14b8a6);
             color: white;
+            font-size: 1.125rem;
             font-weight: 500;
             padding: 0.75rem 1rem;
             border-radius: 0.5rem;
@@ -195,13 +197,12 @@
             }
 
             .nav-menu {
-                /* Reset Mobile Positioning */
+                /* Reset Mobile Full Screen Positioning */
                 position: static;
                 width: auto;
+                height: auto;
                 background-color: transparent;
                 padding: 0;
-                border: none;
-                box-shadow: none;
                 
                 /* Change layout to horizontal row */
                 flex-direction: row;
@@ -212,20 +213,25 @@
                 
                 /* Always visible on desktop */
                 visibility: visible;
-                opacity: 1;
                 transform: none;
                 transition: none;
             }
 
             .nav-link {
                 padding: 0.5rem 0.75rem;
-                font-size: 0.875rem;
+                font-size: 0.875rem; /* Reset to smaller font for desktop */
+            }
+
+            .nav-link:hover {
+                background-color: #1f2937;
+                border-radius: 0.375rem;
             }
 
             .nav-cta-container {
                 /* Change CTA layout to horizontal */
                 flex-direction: row;
                 align-items: center;
+                width: auto;
                 margin-top: 0;
                 border-top: none;
                 padding-top: 0;
@@ -263,7 +269,7 @@
             </div>
             
             <button id="mobile-menu-button" class="mobile-menu-button" aria-label="Toggle menu">
-                <svg stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                <svg id="menu-icon-svg" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
@@ -282,19 +288,42 @@
         </nav>
     </header>
 
-    <div style="padding: 2rem; background-color: #f3f4f6; min-height: 100vh;">
+    <div style="padding: 2rem; background-color: #f3f4f6; min-height: 200vh;">
         <h1 style="margin-top: 0;">Main Page Content</h1>
-        <p>Resize the window to see the single HTML list adapt beautifully to both mobile and desktop via CSS.</p>
+        <p>Click the hamburger menu. The menu will slide down from the very top, taking over the whole screen. Notice you can't scroll this page while the menu is open!</p>
     </div>
 
     <script>
     (function() {
         const menuButton = document.getElementById('mobile-menu-button');
         const navMenu = document.getElementById('nav-menu');
+        const menuIconSvg = document.getElementById('menu-icon-svg');
         
+        // The SVG paths for the hamburger (open) and X (close) icons
+        const hamburgerPath = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+        const closePath = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
+
         if (menuButton && navMenu) {
             menuButton.addEventListener('click', function() {
-                navMenu.classList.toggle('open');
+                const isOpen = navMenu.classList.toggle('open');
+                
+                // Swap the icon and lock scrolling
+                if (isOpen) {
+                    menuIconSvg.innerHTML = closePath;
+                    document.body.style.overflow = 'hidden'; // Prevents scrolling behind the menu
+                } else {
+                    menuIconSvg.innerHTML = hamburgerPath;
+                    document.body.style.overflow = ''; // Restores scrolling
+                }
+            });
+
+            // Ensure scrolling is restored if the screen is resized back to desktop while menu is open
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 768) {
+                    document.body.style.overflow = '';
+                    navMenu.classList.remove('open');
+                    menuIconSvg.innerHTML = hamburgerPath;
+                }
             });
         }
     })();
