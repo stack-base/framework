@@ -226,22 +226,18 @@
     </header>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var menuButton = document.getElementById('mobile-menu-button');
-            var mobileMenu = document.getElementById('mobile-menu');
-            var icon = menuButton.querySelector('svg');
-
+    (function() {
+        // No event listener needed! The HTML above this script is already injected.
+        var menuButton = document.getElementById('mobile-menu-button');
+        var mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuButton && mobileMenu) {
             menuButton.addEventListener('click', function() {
-                if (mobileMenu.classList.contains('open')) {
-                    mobileMenu.classList.remove('open');
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
-                } else {
-                    mobileMenu.classList.add('open');
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
-                }
+                mobileMenu.classList.toggle('open');
             });
-        });
-    </script>
+        }
+    })();
+</script>
 </body>
 
 </html>
