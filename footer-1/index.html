@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Font: Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Roboto @ Google Fonts -->
+    <!-- font-family: "Roboto", sans-serif; -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Poppins @ Google Fonts -->
+    <!-- font-family: 'Poppins', sans-serif; -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <!-- Fredoka @ Google Fonts -->
+    <!-- font-family: 'Fredoka', sans-serif; -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+
+    <!-- Ununtu @ Google Fonts -->
+    <!-- font-family: 'Ubuntu', sans-serif; -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        footer {
+            background-color: #111827;
+            color: #9ca3af; /* text-gray-400 */
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 columns on mobile */
+            gap: 2rem;
+        }
+        
+        .footer-brand {
+            grid-column: span 2 / span 2; /* Full width on mobile */
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand .logo-container {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            font-size: 0.875rem;
+            margin: 0;
+        }
+
+        .footer-brand .copyright {
+             margin-top: 1rem;
+        }
+        
+        .footer-links-group h4 {
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            margin-top: 0;
+        }
+        
+        .footer-links-group ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .footer-links-group li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links-group a {
+            font-size: 0.875rem;
+        }
+        
+        .footer-links-group a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #374151; /* gray-700 */
+            display: flex;
+            flex-direction: column; /* Stack on mobile */
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .footer-bottom p {
+            font-size: 0.875rem;
+            margin: 0;
+        }
+        
+        .footer-socials {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center; /* <-- This line fixes the alignment */
+        }
+        
+        .footer-socials a {
+            color: #9ca3af;
+            display: flex; /* <-- Add this */
+            align-items: center; /* <-- Add this */
+        }
+        
+        .footer-socials a:hover {
+            color: white;
+        }
+        
+        .footer-socials svg {
+            height: 1.5rem;
+            width: 1.5rem;
+        }
+
+        /* --- Dark Mode Toggle Button --- */
+        #darkModeToggle {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease-in-out;
+        }
+
+        #darkModeToggle:hover {
+            color: white;
+        }
+
+        #darkModeToggle svg {
+            height: 1.5rem;
+            width: 1.5rem;
+        }
+
+        /* Show moon by default, hide sun */
+        #darkModeToggle .icon-sun {
+            display: none;
+        }
+        #darkModeToggle .icon-moon {
+            display: block;
+        }
+
+        /* In dark mode, hide moon, show sun */
+        body.dark-mode #darkModeToggle .icon-sun {
+            display: block;
+        }
+        body.dark-mode #darkModeToggle .icon-moon {
+            display: none;
+        }
+
+        /* --- 8. Responsive Media Queries --- */
+        
+        /* Small screens and up (e.g., large phones) */
+        @media (min-width: 640px) {
+            .footer-bottom {
+                flex-direction: row; /* Side-by-side */
+            }
+        }
+        
+        /* Medium screens and up (e.g., tablets) */
+        @media (min-width: 768px) {
+            /* Adjust footer grid */
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .footer-brand {
+                grid-column: span 2 / span 2;
+            }
+            .footer-links-group {
+                grid-column: span 1 / span 1;
+            }
+        }
+        
+        /* Large screens and up (e.g., desktops) */
+        @media (min-width: 1024px) {
+            /* 5-column footer layout */
+            .footer-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand Info -->
+                <div class="footer-brand">
+                    <div class="logo-container">
+                        <img 
+                            src="https://stack-base.github.io/media/brand/stackbase/stackbase-icon.png" 
+                            alt="StackBase Logo"
+                            onerror="this.onerror=null;this.src='https://placehold.co/32x32/14b8a6/white?text=SB&font=roboto';"
+                        >
+                        <span>StackBase</span>
+                    </div>
+                    <p>
+                        The modern platform for web development, forms, and invoicing.
+                    </p>
+                    <!-- <p class="copyright">&copy; 2025 StackBase, Inc. All rights reserved.</p> -->
+                </div>
+                
+                <!-- Product Links -->
+                <div class="footer-links-group">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Website Development</a></li>
+                        <li><a href="#features">Web Forms</a></li>
+                        <li><a href="https://stack-base.github.io/swiftinvoice">Invoicing</a></li>
+                        <!-- <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#changelog">Changelog</a></li> -->
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div class="footer-links-group">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#docs">Documentation</a></li>
+                        <li><a href="#guides">Guides</a></li>
+                        <!-- <li><a href="#api">API Reference</a></li> -->
+                        <li><a href="#support">Support</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company -->
+                <div class="footer-links-group">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <!-- <li><a href="#blog">Blog</a></li>
+                        <li><a href="#careers">Careers</a></li> -->
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Empty column for 5-col layout spacing on desktop -->
+                <div class="footer-links-group"></div>
+            </div>
+            
+            <!-- Social Media Icons -->
+            <div class="footer-bottom">
+                <p>A new way to build the web.</p>
+                <div class="footer-socials">
+                    <!-- Dark Mode Toggle Button -->
+                    <button id="darkModeToggle" aria-label="Toggle dark mode">
+                        <!-- Moon Icon (for switching to dark) -->
+                        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                        <!-- Sun Icon (for switching to light) -->
+                        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </button>
+
+                    <!-- <a href="#" aria-label="Twitter">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.93.55-1.95.94-3.027 1.15a4.93 4.93 0 00-8.38 4.482A13.97 13.97 0 011.67 3.149a4.93 4.93 0 001.524 6.57c-.8-.02-1.55-.24-2.2-.6a4.93 4.93 0 003.9 4.828 4.93 4.93 0 01-2.22.08A4.93 4.93 0 007.4 15.6a9.9 9.9 0 01-6.11 2.1 9.78 9.78 0 01-1.17-.07A13.95 13.95 0 008.28 21c10.07 0 15.58-8.35 15.58-15.58 0-.24-.005-.47-.015-.7A11.1 11.1 0 0024 4.59z"/></svg>
+    
+                    </a>
+                    <a href="#" aria-label="GitHub">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.488.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.602-3.369-1.34-3.369-1.34-.454-1.157-1.11-1.468-1.11-1.468-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.527 2.338 1.085 2.91.83.092-.645.35-1.085.635-1.334-2.22-.25-4.555-1.11-4.555-4.943 0-1.09.39-1.988 1.03-2.685-.103-.254-.447-1.27.096-2.647 0 0 .84-.27 2.75 1.026.798-.22 1.648-.33 2.498-.33.85 0 1.7.11 2.498.33 1.91-1.296 2.748-1.026 2.748-1.026.545 1.377.2 2.393.1 2.647.64.697 1.03 1.595 1.03 2.685 0 3.843-2.337 4.687-4.565 4.935.359.305.678.915.678 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.18.577.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg>
+    
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    
+                    </a> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
