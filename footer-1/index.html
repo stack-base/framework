@@ -217,6 +217,15 @@
                 grid-template-columns: repeat(5, 1fr);
             }
         }
+
+        /* --- Dark Mode Toggle --- */
+        #darkModeToggle { background: none; border: none; color: #9ca3af; cursor: pointer; padding: 0; margin: 0; display: flex; align-items: center; justify-content: center; transition: color 0.2s; }
+        #darkModeToggle:hover { color: white; }
+        #darkModeToggle svg { height: 1.5rem; width: 1.5rem; }
+        #darkModeToggle .icon-sun { display: none; }
+        #darkModeToggle .icon-moon { display: block; }
+        body.dark-mode #darkModeToggle .icon-sun { display: block; }
+        body.dark-mode #darkModeToggle .icon-moon { display: none; }
     </style>
 </head>
 
