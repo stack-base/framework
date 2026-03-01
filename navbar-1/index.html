@@ -13,7 +13,9 @@
 
     <style>
         /* Global Reset */
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
         }
 
@@ -26,62 +28,66 @@
             font-size: 16px;
             line-height: 1.5;
         }
-        
+
         .container {
             width: 90%;
             max-width: 1280px;
             margin-left: auto;
             margin-right: auto;
         }
-        
+
         a {
             text-decoration: none;
             color: inherit;
             transition: all 0.2s ease-in-out;
         }
-        
+
         button {
             cursor: pointer;
             font-family: inherit;
             border: none;
             background: none;
         }
-        
+
         header {
             background-color: #111827;
-            position: sticky;
+            position: fixed;
+            left: 0;
+            /* Lock to the left edge */
+            width: 100%;
+            /* Force it to span the full width */
             top: 0;
             z-index: 50;
         }
-        
+
         header nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
             height: 4rem;
         }
-        
+
         /* Set relative positioning and high z-index so the logo stays above the sliding menu */
         .logo-container {
             display: flex;
             align-items: center;
             flex-shrink: 0;
             position: relative;
-            z-index: 60; 
+            z-index: 60;
         }
 
         .logo-container img {
             height: 2rem;
             width: 2rem;
         }
-        
+
         .logo-container span {
             color: white;
             font-size: 1.5rem;
             font-weight: 700;
             margin-left: 0.75rem;
         }
-        
+
         /* Stay above the sliding menu */
         .mobile-menu-button {
             display: block;
@@ -90,13 +96,13 @@
             margin-right: -0.5rem;
             transition: color 0.2s;
             position: relative;
-            z-index: 60; 
+            z-index: 60;
         }
 
         .mobile-menu-button:hover {
             color: white;
         }
-        
+
         .mobile-menu-button svg {
             height: 1.5rem;
             width: 1.5rem;
@@ -107,56 +113,68 @@
            ========================================
         */
         .nav-menu {
-            position: fixed; /* Fix to viewport */
-            top: 0; 
+            position: fixed;
+            /* Fix to viewport */
+            top: 0;
             left: 0;
             width: 100%;
-            height: 100vh; /* Full screen height */
-            background-color: rgba(17, 24, 39, 0.98); /* Slight transparency */
-            backdrop-filter: blur(10px); /* Premium blur effect */
+            height: 100vh;
+            /* Full screen height */
+            background-color: rgba(17, 24, 39, 0.98);
+            /* Slight transparency */
+            backdrop-filter: blur(10px);
+            /* Premium blur effect */
             padding: 5rem 2rem 4rem 2rem;
-            
+
             /* Mobile Layout: Stacked vertically and centered */
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Beautifully centers content vertically */
-            gap: 4rem; /* Balanced spacing */
-            
+            justify-content: center;
+            /* Beautifully centers content vertically */
+            gap: 4rem;
+            /* Balanced spacing */
+
             /* Hidden by default with animation from top */
             visibility: hidden;
-            transform: translateY(-100%); /* Start completely off-screen at the top */
+            transform: translateY(-100%);
+            /* Start completely off-screen at the top */
             transition: transform 0.4s ease-in-out, visibility 0.4s ease-in-out;
-            z-index: 40; /* Lower than logo and hamburger button */
+            z-index: 40;
+            /* Lower than logo and hamburger button */
         }
-        
+
         /* Active state for mobile */
         .nav-menu.open {
             visibility: visible;
-            transform: translateY(0); /* Slide down into view */
+            transform: translateY(0);
+            /* Slide down into view */
         }
-        
+
         /* Links inside the menu */
         .nav-link {
             display: block;
             color: #d1d5db;
-            font-size: 1.5rem; /* Beautiful, large text for full screen */
+            font-size: 1.5rem;
+            /* Beautiful, large text for full screen */
             font-weight: 600;
             letter-spacing: 0.025em;
             transition: color 0.3s ease, transform 0.3s ease;
         }
-        
+
         .nav-link:hover {
             color: white;
-            transform: translateY(-2px); /* Gentle lift effect */
+            transform: translateY(-2px);
+            /* Gentle lift effect */
         }
-        
+
         /* Call to Action Container */
         .nav-cta-container {
             display: flex;
             flex-direction: column;
             width: 100%;
-            max-width: 320px; /* Constrain width so buttons aren't overly massive */
+            max-width: 320px;
+            /* Constrain width so buttons aren't overly massive */
             gap: 1.25rem;
             margin-top: 1rem;
             border-top: 1px solid #374151;
@@ -177,7 +195,7 @@
             color: white;
             background-color: #1f2937;
         }
-        
+
         .nav-cta-signup {
             background-image: linear-gradient(to right, #3b82f6, #14b8a6);
             color: white;
@@ -189,7 +207,7 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
-        
+
         .nav-cta-signup:hover {
             background-image: linear-gradient(to right, #2563eb, #0d9488);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
@@ -202,7 +220,8 @@
         */
         @media (min-width: 768px) {
             .mobile-menu-button {
-                display: none; /* Hide hamburger */
+                display: none;
+                /* Hide hamburger */
             }
 
             .nav-menu {
@@ -213,14 +232,15 @@
                 background-color: transparent;
                 backdrop-filter: none;
                 padding: 0;
-                
+
                 /* Change layout to horizontal row */
                 flex-direction: row;
                 align-items: center;
                 flex-grow: 1;
-                justify-content: flex-end; /* Pushes content to the right */
+                justify-content: flex-end;
+                /* Pushes content to the right */
                 gap: 0.5rem;
-                
+
                 /* Always visible on desktop */
                 visibility: visible;
                 transform: none;
@@ -229,7 +249,8 @@
 
             .nav-link {
                 padding: 0.5rem 0.75rem;
-                font-size: 0.875rem; /* Reset to smaller font for desktop */
+                font-size: 0.875rem;
+                /* Reset to smaller font for desktop */
                 font-weight: 500;
                 letter-spacing: normal;
             }
@@ -237,7 +258,8 @@
             .nav-link:hover {
                 background-color: #1f2937;
                 border-radius: 0.375rem;
-                transform: none; /* Disable the mobile lift effect */
+                transform: none;
+                /* Disable the mobile lift effect */
             }
 
             .nav-cta-container {
@@ -249,7 +271,8 @@
                 margin-top: 0;
                 border-top: none;
                 padding-top: 0;
-                margin-left: 1.5rem; /* Space between main links and CTAs */
+                margin-left: 1.5rem;
+                /* Space between main links and CTAs */
                 gap: 0.5rem;
             }
 
@@ -257,18 +280,20 @@
                 padding: 0.5rem 0.75rem;
                 font-size: 0.875rem;
             }
-            
+
             .nav-cta-signin:hover {
-                background-color: transparent; /* Remove mobile background hover */
+                background-color: transparent;
+                /* Remove mobile background hover */
             }
 
             .nav-cta-signup {
                 padding: 0.5rem 1rem;
                 font-size: 0.875rem;
             }
-            
+
             .nav-cta-signup:hover {
-                transform: none; /* Disable the mobile lift effect */
+                transform: none;
+                /* Disable the mobile lift effect */
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
             }
         }
@@ -280,14 +305,11 @@
     <header>
         <nav class="container">
             <div class="logo-container">
-                <img 
-                    src="https://stack-base.github.io/media/brand/stackbase/stackbase-icon.png" 
-                    alt="StackBase Logo"
-                    onerror="this.onerror=null;this.src='https://placehold.co/32x32/14b8a6/white?text=SB&font=roboto';"
-                >
+                <img src="https://stack-base.github.io/media/brand/stackbase/stackbase-icon.png" alt="StackBase Logo"
+                    onerror="this.onerror=null;this.src='https://placehold.co/32x32/14b8a6/white?text=SB&font=roboto';">
                 <span>StackBase</span>
             </div>
-            
+
             <button id="mobile-menu-button" class="mobile-menu-button" aria-label="Toggle menu">
                 <svg id="menu-icon-svg" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -299,7 +321,7 @@
                 <a href="https://stack-base.github.io/swiftinvoice/data-studio" class="nav-link">Data Studio</a>
                 <a href="https://stack-base.github.io/timetrekker" class="nav-link">TimeTrekker</a>
                 <a href="https://stack-base.github.io/workspace" class="nav-link">Workspace</a>
-                
+
                 <div class="nav-cta-container">
                     <a href="https://stack-base.github.io/account/login" class="nav-cta-signin">Sign In</a>
                     <a href="#signup" class="nav-cta-signup">Get Started</a>
@@ -309,39 +331,39 @@
     </header>
 
     <script>
-    (function() {
-        const menuButton = document.getElementById('mobile-menu-button');
-        const navMenu = document.getElementById('nav-menu');
-        const menuIconSvg = document.getElementById('menu-icon-svg');
-        
-        // The SVG paths for the hamburger (open) and X (close) icons
-        const hamburgerPath = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
-        const closePath = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
+        (function () {
+            const menuButton = document.getElementById('mobile-menu-button');
+            const navMenu = document.getElementById('nav-menu');
+            const menuIconSvg = document.getElementById('menu-icon-svg');
 
-        if (menuButton && navMenu) {
-            menuButton.addEventListener('click', function() {
-                const isOpen = navMenu.classList.toggle('open');
-                
-                // Swap the icon and lock scrolling
-                if (isOpen) {
-                    menuIconSvg.innerHTML = closePath;
-                    document.body.style.overflow = 'hidden'; // Prevents scrolling behind the menu
-                } else {
-                    menuIconSvg.innerHTML = hamburgerPath;
-                    document.body.style.overflow = ''; // Restores scrolling
-                }
-            });
+            // The SVG paths for the hamburger (open) and X (close) icons
+            const hamburgerPath = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+            const closePath = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
 
-            // Ensure scrolling is restored if the screen is resized back to desktop while menu is open
-            window.addEventListener('resize', function() {
-                if (window.innerWidth >= 768) {
-                    document.body.style.overflow = '';
-                    navMenu.classList.remove('open');
-                    menuIconSvg.innerHTML = hamburgerPath;
-                }
-            });
-        }
-    })();
+            if (menuButton && navMenu) {
+                menuButton.addEventListener('click', function () {
+                    const isOpen = navMenu.classList.toggle('open');
+
+                    // Swap the icon and lock scrolling
+                    if (isOpen) {
+                        menuIconSvg.innerHTML = closePath;
+                        document.body.style.overflow = 'hidden'; // Prevents scrolling behind the menu
+                    } else {
+                        menuIconSvg.innerHTML = hamburgerPath;
+                        document.body.style.overflow = ''; // Restores scrolling
+                    }
+                });
+
+                // Ensure scrolling is restored if the screen is resized back to desktop while menu is open
+                window.addEventListener('resize', function () {
+                    if (window.innerWidth >= 768) {
+                        document.body.style.overflow = '';
+                        navMenu.classList.remove('open');
+                        menuIconSvg.innerHTML = hamburgerPath;
+                    }
+                });
+            }
+        })();
     </script>
 </body>
 
