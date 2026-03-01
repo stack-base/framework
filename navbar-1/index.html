@@ -167,6 +167,19 @@
             text-align: left;
             margin-top: 0.5rem;
         }
+
+        @media (min-width: 768px) {
+            .nav-desktop,
+            .nav-desktop-cta {
+                display: flex;
+            }
+            .mobile-menu-button {
+                display: none;
+            }
+            .mobile-menu {
+                display: none !important;
+            }
+        }
     </style>
 
 </head>
@@ -211,6 +224,24 @@
             <a href="#signup" class="nav-cta-signup">Get Started</a>
         </div>
     </header>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuButton = document.getElementById('mobile-menu-button');
+            var mobileMenu = document.getElementById('mobile-menu');
+            var icon = menuButton.querySelector('svg');
+
+            menuButton.addEventListener('click', function() {
+                if (mobileMenu.classList.contains('open')) {
+                    mobileMenu.classList.remove('open');
+                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+                } else {
+                    mobileMenu.classList.add('open');
+                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
