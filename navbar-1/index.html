@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>atikle/framework/navbar-1</title>
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s ease-in-out;
+        }
+        
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            background: none;
+        }
+        
+        header {
+            background-color: #111827;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        header nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo-container img {
+            height: 2rem;
+            width: 2rem;
+        }
+        
+        .logo-container span {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-left: 0.75rem;
+        }
+        
+        .nav-desktop {
+            display: none;
+        }
+        
+        .nav-desktop a {
+            color: #d1d5db;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            margin-left: 0.5rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-desktop a:hover {
+            color: white;
+        }
+        
+        .nav-desktop-cta {
+            display: none;
+            align-items: center;
+        }
+
+        .nav-cta-signin {
+            color: #d1d5db;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            transition: color 0.2s;
+        }
+
+        .nav-cta-signin:hover {
+            color: white;
+        }
+        
+        .nav-cta-signup {
+            background-image: linear-gradient(to right, #3b82f6, #14b8a6);
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            margin-left: 1rem;
+            transition: all 0.2s;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-cta-signup:hover {
+            background-image: linear-gradient(to right, #2563eb, #0d9488);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+        }
+        
+        .mobile-menu-button {
+            display: block;
+            color: #d1d5db;
+            padding: 0.5rem;
+        }
+        
+        .mobile-menu-button svg {
+            height: 1.5rem;
+            width: 1.5rem;
+        }
+        
+        .mobile-menu {
+            display: none;
+            padding-bottom: 1rem;
+        }
+        
+        .mobile-menu.open {
+            display: block;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            color: #d1d5db;
+            padding: 0.75rem 0.5rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+        }
+        
+        .mobile-menu a:hover {
+            color: white;
+        }
+        
+        .mobile-menu .nav-cta-signup {
+            width: 100%;
+            text-align: left;
+            margin-top: 0.5rem;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo-container">
+                <img 
+                    src="https://stack-base.github.io/media/brand/stackbase/stackbase-icon.png" 
+                    alt="StackBase Logo"
+                    onerror="this.onerror=null;this.src='https://placehold.co/32x32/14b8a6/white?text=SB&font=roboto';"
+                >
+                <span>StackBase</span>
+            </div>
+            
+            <div class="nav-desktop">
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#docs">Docs</a>
+                <a href="#contact">Contact</a>
+            </div>
+            
+            <div class="nav-desktop-cta">
+                <a href="https://stack-base.github.io/account/login" class="nav-cta-signin">Sign In</a>
+                <a href="#signup" class="nav-cta-signup">Get Started</a>
+            </div>
+            
+            <button id="mobile-menu-button" class="mobile-menu-button" aria-label="Toggle menu">
+                <svg stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </nav>
+        
+        <div id="mobile-menu" class="mobile-menu container">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#docs">Docs</a>
+            <a href="#contact">Contact</a>
+            <a href="https://stack-base.github.io/account/login" class="nav-cta-signin">Sign In</a>
+            <a href="#signup" class="nav-cta-signup">Get Started</a>
+        </div>
+    </header>
+</body>
+
+</html>
